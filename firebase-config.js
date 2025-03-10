@@ -1,22 +1,12 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+const admin = require('firebase-admin');
+const serviceAccount = require('./serviceAccountKey.json');
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyA3TuoTLhIMt4uV5Xa1eYvYV_XiTacdKGc",
-  authDomain: "api-bim-16567.firebaseapp.com",
-  databaseURL: "https://api-bim-16567-default-rtdb.firebaseio.com",
-  projectId: "api-bim-16567",
-  storageBucket: "api-bim-16567.firebasestorage.app",
-  messagingSenderId: "1021504862736",
-  appId: "1:1021504862736:web:cadccd1af940e2d8fee895",
-  measurementId: "G-0R0M9Q6M1P"
-};
+if (!admin.apps.length) {
+    admin.initializeApp({
+        credential: admin.credential.cert(serviceAccount),
+        databaseURL: process.env.FIREBASE_URL
+    });
+}
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const db = admin.database();
+module.exports = db;
