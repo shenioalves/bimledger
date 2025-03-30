@@ -5,7 +5,7 @@ initViewer(document.getElementById('preview')).then(viewer => {
     setupModelSelection(viewer, urn);
     setupModelUpload(viewer);
 });
-//ola
+
 async function setupModelSelection(viewer, selectedUrn) {
     const dropdown = document.getElementById('models');
     dropdown.innerHTML = '';

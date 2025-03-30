@@ -20,6 +20,8 @@ async function getInternalToken() {
     return credentials.access_token;
 }
 
+service.getInternalToken = getInternalToken;
+
 service.getViewerToken = async () => {
     return await authenticationClient.getTwoLeggedToken(APS_CLIENT_ID, APS_CLIENT_SECRET, [Scopes.ViewablesRead]);
 };
