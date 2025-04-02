@@ -1,5 +1,5 @@
 const express = require('express');
-const { getViewerToken } = require('../services/aps.js');
+const { getViewerToken, getInternalToken } = require('../services/aps.js');
 
 let router = express.Router();
 
@@ -11,4 +11,13 @@ router.get('/api/auth/token', async function (req, res, next) {
     }
 });
 
-module.exports = router;
+router.get('/api/getToken', async function (req, res, next) {
+    try {
+        const accessToken = await getInternalToken();
+        res.json({ access_token: accessToken });
+    } catch (err) {
+        next(err);
+    }
+});
+
+module.exports = router;
