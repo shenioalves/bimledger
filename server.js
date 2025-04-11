@@ -5,7 +5,7 @@ const cors = require('cors');
 let app = express();
 
 app.use(cors({
-    origin: 'http://localhost:5173', // URL do frontend
+    origin: 'https://bim-ledger.vercel.app', // URL do frontend
     credentials: true
   }));
 
